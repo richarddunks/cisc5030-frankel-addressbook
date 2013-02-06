@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EntriesControllerTest < ActionController::TestCase
   setup do
-    @entry = entries(:one)
+    @entry = entries(:valid)
   end
 
   test "should get index" do
@@ -14,6 +14,13 @@ class EntriesControllerTest < ActionController::TestCase
   test "should get new" do
     get :new
     assert_response :success
+  end
+
+  test "should have all fields in form" do
+    get :new
+    Entry.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+      assert_select "input#entry_#{f}", true
+    end
   end
 
   test "should create entry" do
@@ -32,6 +39,13 @@ class EntriesControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @entry
     assert_response :success
+  end
+  test "should have all input filled in edit form" do
+  # make sure form properly filled in
+    get :edit, id: @entry
+    Entry.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+      assert_select "input#entry_#{f}[value=?]", @entry.send(f)
+    end
   end
 
   test "should update entry" do

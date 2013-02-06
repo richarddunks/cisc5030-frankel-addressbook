@@ -8,10 +8,17 @@ gem 'rails', '3.2.11'
 gem 'simple_form'
 gem 'slim'
 gem 'thin'
+gem 'validates_email_format_of'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'slim-rails'
+  gem 'pry-rails'
+end
+
+group :test do
+  gem 'minitest-reporters'
+  gem 'simplecov', require: false
 end
 
 gem 'pg', group: 'production'
