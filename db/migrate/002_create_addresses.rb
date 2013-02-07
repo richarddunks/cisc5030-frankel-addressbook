@@ -3,7 +3,7 @@ class CreateAddresses < ActiveRecord::Migration
     create_table :addresses do |t|
       t.text :street
       t.string :city
-      t.string :state
+      t.string :state, limit: 2
       t.integer :zip
       t.references :entry
 

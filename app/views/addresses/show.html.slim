@@ -12,10 +12,7 @@ p
 p
   strong Zip:
   = @address.zip
-p
-  strong Entry:
-  = @address.entry
 
-= link_to 'Edit', edit_address_path(@address)
+= link_to 'Edit', edit_entry_address_path(@entry, @address)
 '|
-= link_to 'Back', addresses_path
+= link_to 'Back', entry_addresses_path(@entry)

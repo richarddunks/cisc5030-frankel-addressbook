@@ -1,7 +1,6 @@
 AddressBook::Application.routes.draw do
-  resources :addresses
-
-
-  resources :entries
+  resources :entries do
+    resources :addresses
+  end
   root :to => 'entries#index'
 end

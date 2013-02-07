@@ -17,11 +17,11 @@ table
       td = address.city
       td = address.state
       td = address.zip
-      td = address.entry
-      td = link_to 'Show', address
-      td = link_to 'Edit', edit_address_path(address)
-      td = link_to 'Destroy', address, :confirm => 'Are you sure?', :method => :delete
-
+      td = link_to 'Show', entry_address_path(@entry, address)
+      td = link_to 'Edit', edit_entry_address_path(@entry, address)
+      td = link_to 'Destroy', [@entry, address], :confirm => 'Are you sure?', :method => :delete
 br
 
-= link_to 'New Address', new_address_path
+= link_to 'Back', entry_path(@entry)
+' |
+= link_to 'New Address', new_entry_address_path(@entry)

@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(params[:entry])
-    flash[:notice]  = "Entry created"if @entry.save
+    flash[:notice]  = "Entry created" if @entry.save
     respond_with(@entry)
   end
 
