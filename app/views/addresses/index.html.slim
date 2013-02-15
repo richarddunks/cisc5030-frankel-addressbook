@@ -2,6 +2,7 @@ h1 Listing addresses
 
 table
   tr
+    th Type
     th Street
     th City
     th State
@@ -13,6 +14,7 @@ table
 
   - @addresses.each do |address|
     tr
+      td = address.type
       td = address.street
       td = address.city
       td = address.state
