@@ -1,15 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  street: MyText
-  city: MyString
-  state: MyString
-  zip: 1
-  entry: 
+valid:
+  street: my street
+  city: New York
+  state: NY
+  zip: 10011
+  entry: valid
 
-two:
-  street: MyText
-  city: MyString
-  state: MyString
-  zip: 1
-  entry: 
