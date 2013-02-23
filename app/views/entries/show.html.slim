@@ -1,17 +1,14 @@
 p#notice = notice
 
-p
-  strong First name:
-  = @entry.first_name
-p
-  strong Last name:
-  = @entry.last_name
-p
-  strong Email:
-  = @entry.email
+h2= @entry.full_name
+p= @entry.email
+- @entry.addresses.each do |a|
+  = render 'addresses/show', address: a
 
-= link_to 'Edit', edit_entry_path(@entry)
-' | 
-= link_to 'Show Addresses', entry_addresses_path(@entry)
-' | 
-= link_to 'Back', entries_path
+#buttons
+  = link_to 'Edit', edit_entry_path(@entry)
+  ' &nbsp;|&nbsp;
+  = simple_form_for @entry, :method => :DELETE do |f|
+    = f.button :submit, :value => 'Delete'
+  ' &nbsp;|&nbsp;
+  = link_to 'Back', entries_path

@@ -31,6 +31,7 @@ GEM
     ansi (1.4.3)
     arel (3.0.2)
     builder (3.0.4)
+    chunky_png (1.2.7)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -39,11 +40,20 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    compass (0.13.alpha.0)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.2.0.alpha.93)
+    compass-normalize (1.4.2)
+      compass (>= 0.12.0)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fssm (0.2.10)
     hashie (2.0.0)
     hike (1.2.1)
     i18n (0.6.1)
@@ -149,6 +159,8 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2)
+  compass-normalize
+  compass-rails
   jquery-rails
   minitest-reporters
   pg
