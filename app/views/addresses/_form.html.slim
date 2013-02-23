@@ -1,12 +1,7 @@
-= simple_form_for([@entry, @address]) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.association :address_type
-    = f.input :street, input_html: {rows: 3}
-    = f.input :city
-    = f.input :state
-    = f.input :zip
-
-  .form-actions
-    = f.button :submit
+fieldset.form-inputs.nested.address
+  = f.association :address_type
+  = f.input :street, input_html: {rows: 3}
+  = f.input :city
+  = f.input :state, max_length: :lookup
+  = f.input :zip, maxlength: 10, input_html: {size: 12}, as: :string
+  = render 'lib/delete', f: f
