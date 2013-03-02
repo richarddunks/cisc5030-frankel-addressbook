@@ -18,6 +18,13 @@ class EntryTest < ActiveSupport::TestCase
     assert entries(:valid).valid?
   end
 
+  test "07 full name method returns name with first and last" do
+    entry = entries(:valid)
+    name = entries(:valid).full_name
+    assert_match /\b#{entry.first_name}\b/, name, "Includes first name"
+    assert_match /\b#{entry.last_name}\b/,  name, "Includes last name"
+  end
+
   test "05 invalid with a bogus email" do
     refute entries(:bad_email).valid?
   end
