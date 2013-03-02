@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 valid:
+  address_type: <%= AddressType.first %>
   street: my street
   city: New York
   state: NY
   zip: 10011
   entry: valid
 
+no_state:
+  address_type: <%= AddressType.first %>
+  street: my street
+  city: New York
+  state:
+  zip: 10011
+  entry: valid

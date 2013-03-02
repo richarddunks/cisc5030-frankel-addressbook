@@ -20,8 +20,8 @@ class ActiveSupport::TestCase
 
   # seed reference data
   load "#{Rails.root}/db/seeds.rb"
-  
+
   def excluded_attrs
-    %w[id created_at updated_at]
+    %w[id created_at updated_at entry_id]
   end
 end

@@ -25,9 +25,11 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should create entry" do
     assert_difference('Entry.count') do
-      post :create, entry: { email: @entry.email, first_name: @entry.first_name, last_name: @entry.last_name }
+      post :create, entry: {
+        email: @entry.email, first_name: @entry.first_name,
+        last_name: @entry.last_name
+      }
     end
-
     assert_redirected_to entry_path(assigns(:entry))
   end
 
@@ -49,7 +51,10 @@ class EntriesControllerTest < ActionController::TestCase
   end
 
   test "should update entry" do
-    put :update, id: @entry, entry: { email: @entry.email, first_name: @entry.first_name, last_name: @entry.last_name }
+    put :update, id: @entry, entry: {
+      email: @entry.email, first_name: @entry.first_name,
+      last_name: @entry.last_name
+    }
     assert_redirected_to entry_path(assigns(:entry))
   end
 
@@ -57,7 +62,6 @@ class EntriesControllerTest < ActionController::TestCase
     assert_difference('Entry.count', -1) do
       delete :destroy, id: @entry
     end
-
     assert_redirected_to entries_path
   end
 end
