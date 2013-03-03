@@ -15,7 +15,7 @@ class EntriesControllerTest < ActionController::TestCase
   end
 
   test "should create entry with address" do
-    assert_difference('Address.count') do
+    assert_difference('Address.count', 1) do
       @entry.save
     end
   end
@@ -39,10 +39,13 @@ class EntriesControllerTest < ActionController::TestCase
     end
   end
 
-  # test "should destroy entry" do
-  #   assert_difference('Entry.count', -1) do
-  #     delete :destroy, id: @entry
-  #   end
-  #   assert_redirected_to entries_path
-  # end
+  test "should destroy address" do
+    @entry.save
+    assert_difference('Address.count', -1) do
+      put :update, id: @entry, entry: {
+        addresses_attributes: {0 => {_destroy: 1, id: @entry.addresses[0].id}}
+      }
+    end
+    assert_redirected_to entry_path(@entry)
+  end
 end
