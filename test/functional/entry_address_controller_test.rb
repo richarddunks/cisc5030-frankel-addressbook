@@ -9,7 +9,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should have all address fields in form" do
     get :new
-    Address.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+    accessible_attrs(Address).each do |f|
       assert_select "#entry_addresses_attributes_0_#{f}", true
     end
   end
@@ -26,7 +26,7 @@ class EntriesControllerTest < ActionController::TestCase
     assert_select "div.address", true
   end
 
-  test "should have all a filled in sub-form, and a blank entry" do
+  test "should have a filled in sub-form and a blank entry" do
     # make sure form properly filled in
     @entry.save
     get :edit, id: @entry
@@ -34,7 +34,7 @@ class EntriesControllerTest < ActionController::TestCase
       assert_select "#entry_addresses_attributes_0_#{f}[value=?]",
       @entry.addresses[0].send(f)
     end
-    Address.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+    accessible_attrs(Address).each do |f|
       assert_select "#entry_addresses_attributes_1_#{f}", true
     end
   end

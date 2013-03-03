@@ -1,4 +1,6 @@
 class EntriesController < ApplicationController
+  include EntriesHelper
+
   respond_to :html
 
   before_filter :find_entry, only: [:show, :edit, :update]
@@ -46,5 +48,8 @@ class EntriesController < ApplicationController
   def build_children
     @entry ||= Entry.new
     @entry.addresses.build
+    urls do |accessor,type|
+      @entry.send(accessor).build
+    end
   end
 end

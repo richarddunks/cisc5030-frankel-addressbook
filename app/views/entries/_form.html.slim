@@ -5,10 +5,13 @@
     legend Name
     = f.input :first_name
     = f.input :last_name
-    = f.input :email
 
   = f.simple_fields_for :addresses do |af|
     = render 'addresses/form', f: af
-    
+
+  - urls do |accessor, type|
+    = f.simple_fields_for accessor do |tf|
+      = render 'urls/form', f: tf, legend: type
+
   .form-actions
     = f.button :submit

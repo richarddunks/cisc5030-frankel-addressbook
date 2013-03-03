@@ -18,7 +18,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should have all fields in form" do
     get :new
-    Entry.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+    accessible_attrs(Entry).each do |f|
       assert_select "input#entry_#{f}", true
     end
   end
@@ -26,8 +26,7 @@ class EntriesControllerTest < ActionController::TestCase
   test "should create entry" do
     assert_difference('Entry.count') do
       post :create, entry: {
-        email: @entry.email, first_name: @entry.first_name,
-        last_name: @entry.last_name
+        first_name: @entry.first_name, last_name: @entry.last_name
       }
     end
     assert_redirected_to entry_path(assigns(:entry))
@@ -45,15 +44,14 @@ class EntriesControllerTest < ActionController::TestCase
   test "should have all input filled in edit form" do
   # make sure form properly filled in
     get :edit, id: @entry
-    Entry.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+    accessible_attrs(Entry).each do |f|
       assert_select "input#entry_#{f}[value=?]", @entry.send(f)
     end
   end
 
   test "should update entry" do
     put :update, id: @entry, entry: {
-      email: @entry.email, first_name: @entry.first_name,
-      last_name: @entry.last_name
+      first_name: @entry.first_name, last_name: @entry.last_name
     }
     assert_redirected_to entry_path(assigns(:entry))
   end

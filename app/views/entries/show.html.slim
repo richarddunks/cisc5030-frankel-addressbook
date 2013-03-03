@@ -1,9 +1,16 @@
 p#notice = notice
 
-h2= @entry.full_name
-p= @entry.email
-- @entry.addresses.each do |a|
-  = render 'addresses/show', address: a
+h1= @entry.full_name
+h2 Addresses
+- @entry.addresses.each do |address|
+  = render 'addresses/show', address: address
+
+- urls do |accessor, type|
+  - if @entry.send(accessor).count > 0
+    div id=accessor
+      h2= type
+      - @entry.send(accessor).each do |url|
+        = render 'urls/show', url: url
 
 #buttons
   = link_to 'Edit', edit_entry_path(@entry)

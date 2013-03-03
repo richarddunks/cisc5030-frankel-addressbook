@@ -3,31 +3,15 @@
 valid:
   first_name: foo
   last_name: bar
-  email: foobar@example.com
+
 empty:
   first_name:
   last_name:
-  email:
 
 no_first:
   first_name:
   last_name: bar
-  email: foobar@example.com
 
 no_last:
   first_name: foo
   last_name: 
-  email: foobar@example.com
-
-no_email:
-  first_name: foo
-  last_name: bar
-  email:
-
-bad_email:
-  first_name: foo
-  last_name: bar
-  email: foobar
-
-
-

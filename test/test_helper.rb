@@ -21,7 +21,7 @@ class ActiveSupport::TestCase
   # seed reference data
   load "#{Rails.root}/db/seeds.rb"
 
-  def excluded_attrs
-    %w[id created_at updated_at entry_id]
+  def accessible_attrs(klass)
+    klass.accessible_attributes.reject { |a| a.blank? || a =~ /attributes$/}
   end
 end
