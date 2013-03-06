@@ -28,6 +28,8 @@ gem 'pg', group: 'production'
 group :assets do
   gem 'sass-rails',   '~> 3.2'
   gem 'coffee-rails', '~> 3.2'
+
+  gem 'compass',      '>= 0.13.alpha.0'
   gem 'compass-rails'
   gem 'compass-normalize'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
