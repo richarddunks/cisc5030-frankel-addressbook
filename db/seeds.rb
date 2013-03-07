@@ -6,5 +6,5 @@
 
 AddressType.delete_all
 %w[Home Work Other].each do |n|
-  AddressType.create!({name: n})
+  AddressType.create!(name: n)
 end
