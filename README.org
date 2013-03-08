@@ -1,0 +1,15 @@
+#+OPTIONS: toc:nil num:nil
+* Addressbook Application Example
+
+This repository contains an example of the current expected state of
+your addressbook application:
+
+** Models
+- Entry
+- Address
+- AddressType
+** Controllers
+- Entries controller (with a nested)
+  - Addresses controller
+** Test
+%100 coverage unit and functional tests.
