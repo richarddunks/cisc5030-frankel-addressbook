@@ -32,7 +32,7 @@ def test_nested(klass, attributes = {})
         elem = elems.first
         value = @entry.send(attrize(klass)).first.send(f)
         if elem.attributes['value'] # only input and text, not select
-          assert_equal elem.attributes['value'], value , "no #{f} with correct value"
+          assert_equal elem.attributes['value'], value.to_s , "no #{f} with correct value"
         elsif elem.name == 'select'
           assert_select 'option[selected="selected"][value=?]', value, 1,
           "no #{f} select option with correct value"
