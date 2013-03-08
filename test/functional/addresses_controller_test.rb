@@ -17,6 +17,13 @@ class AddressesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should have all fields in form" do
+    get :new, entry_id: @entry
+    Address.accessible_attributes.reject(&:blank?).each do |f|
+      assert_select "#address_#{f}", true
+    end
+  end
+
   test "should create address" do
     assert_difference('Address.count') do
       post :create, entry_id: @entry, address: {

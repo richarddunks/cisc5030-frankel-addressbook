@@ -18,7 +18,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should have all fields in form" do
     get :new
-    Entry.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+    Entry.accessible_attributes.reject(&:blank?).each do |f|
       assert_select "input#entry_#{f}", true
     end
   end
@@ -43,7 +43,7 @@ class EntriesControllerTest < ActionController::TestCase
   test "should have all input filled in edit form" do
   # make sure form properly filled in
     get :edit, id: @entry
-    Entry.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+     Entry.accessible_attributes.reject(&:blank?).each do |f|
       assert_select "input#entry_#{f}[value=?]", @entry.send(f)
     end
   end
