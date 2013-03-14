@@ -9,7 +9,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should have all address fields in form" do
     get :new
-    Address.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+    Address.accessible_attributes.reject(&:blank?).each do |f|
       assert_select "#entry_addresses_attributes_0_#{f}", true
     end
   end
@@ -34,15 +34,8 @@ class EntriesControllerTest < ActionController::TestCase
       assert_select "#entry_addresses_attributes_0_#{f}[value=?]",
       @entry.addresses[0].send(f)
     end
-    Address.attribute_names.reject {|n| excluded_attrs.include? n}.each do |f|
+    Address.accessible_attributes.reject(&:blank?).each do |f|
       assert_select "#entry_addresses_attributes_1_#{f}", true
     end
   end
-
-  # test "should destroy entry" do
-  #   assert_difference('Entry.count', -1) do
-  #     delete :destroy, id: @entry
-  #   end
-  #   assert_redirected_to entries_path
-  # end
 end
