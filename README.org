@@ -1,8 +1,11 @@
 #+OPTIONS: toc:nil num:nil
 * Addressbook Application Example
 
+The running application is on [[http://cisc5030-frankel-addressbook.herokuapp.com][heroku]]. 
+
 This repository contains an example of the current expected state of
-your addressbook application:
+your addressbook application. You shouldn't just copy the code, but
+make sure you understand why and how.
 
 ** Models
 - Entry
@@ -13,3 +16,4 @@ your addressbook application:
   - Addresses controller
 ** Test
 %100 coverage unit and functional tests.
+
