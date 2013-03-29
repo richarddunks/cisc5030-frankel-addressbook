@@ -13,5 +13,8 @@
     = f.simple_fields_for accessor do |tf|
       = render 'urls/form', f: tf, legend: type
 
+  = f.simple_fields_for :addresses do |af|
+    = render 'addresses/form', f: af
+    
   .form-actions
     = f.button :submit
