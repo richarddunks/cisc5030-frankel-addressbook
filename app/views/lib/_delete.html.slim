@@ -1,0 +1,3 @@
+- unless f.object.new_record?
+  = f.input 'Delete', label_html: {class: 'inline'}  do
+    = f.check_box '_destroy'

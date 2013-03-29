@@ -20,4 +20,7 @@ class ActiveSupport::TestCase
 
   # seed reference data
   load "#{Rails.root}/db/seeds.rb"
+  def accessible_attrs(klass)
+    klass.accessible_attributes.reject { |a| a.blank? || a =~ /attributes$/}
+  end
 end

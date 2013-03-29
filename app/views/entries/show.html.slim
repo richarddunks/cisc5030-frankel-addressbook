@@ -1,17 +1,21 @@
 p#notice = notice
 
-p
-  strong First name:
-  = @entry.first_name
-p
-  strong Last name:
-  = @entry.last_name
-p
-  strong Email:
-  = @entry.email
+h1= @entry.full_name
+h2 Addresses
+- @entry.addresses.each do |address|
+  = render 'addresses/show', address: address
 
-= link_to 'Edit', edit_entry_path(@entry)
-' | 
-= link_to 'Show Addresses', entry_addresses_path(@entry)
-' | 
-= link_to 'Back', entries_path
+- urls do |accessor, type|
+  - if @entry.send(accessor).count > 0
+    div id=accessor
+      h2= type
+      - @entry.send(accessor).each do |url|
+        = render 'urls/show', url: url
+
+#buttons
+  = link_to 'Edit', edit_entry_path(@entry)
+  ' &nbsp;|&nbsp;
+  = simple_form_for @entry, :method => :DELETE do |f|
+    = f.button :submit, :value => 'Delete'
+  ' &nbsp;|&nbsp;
+  = link_to 'Back', entries_path
