@@ -32,6 +32,7 @@ group :assets do
   gem 'compass-normalize'
   gem 'susy'
   gem 'kramdown'
+  gem 'faker'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
