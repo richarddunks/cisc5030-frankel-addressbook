@@ -13,5 +13,7 @@
     = f.simple_fields_for accessor do |tf|
       = render 'urls/form', f: tf, legend: type
 
-  .form-actions
+  #buttons.form-actions
+    = link_to "Back", back
+    ' &nbsp;| 
     = f.button :submit

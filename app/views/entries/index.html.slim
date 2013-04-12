@@ -1,6 +1,10 @@
-h1 Entries
-ul
-  - @entries.each do |entry|
-    = render 'index_entry', entry: entry
+markdown:
+  We will be using [Compass](http://compass-style.org), 
+  [Susy](http://susy.oddbird.net/) and the 
+  `compass-normalize` plugin. See the `Gemfile`
+  for the bundler requirements.
 
-= link_to 'New Entry', new_entry_path
+  You can use the `db/seeds.rb` file to populate your
+  website with dummy data.
+
+    

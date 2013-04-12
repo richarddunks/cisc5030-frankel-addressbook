@@ -3,11 +3,12 @@ class EntriesController < ApplicationController
 
   respond_to :html
 
-  before_filter :find_entry, only: [:show, :edit, :update]
+  before_filter :find_entry,     only: [:show, :edit, :update]
   before_filter :build_children, only: [:new, :edit]
+  before_filter :get_entries
 
   def index
-    respond_with(@entries = Entry.all)
+    respond_with(@entries)
   end
 
   def show
@@ -25,7 +26,7 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(params[:entry])
     if(@entry.save)
-      flash[:notice] = "Entry created"
+      flash_notice('created')
     else
       build_children
     end
@@ -33,7 +34,7 @@ class EntriesController < ApplicationController
   end
 
   def update
-    flash[:notice] = "Entry #{@entry.id} updated" if @entry.update_attributes(
+    flash_notice('updated') if @entry.update_attributes(
       params[:entry]
       )
     respond_with(@entry)
@@ -41,19 +42,29 @@ class EntriesController < ApplicationController
 
   def destroy
     Entry.find(params[:id]).destroy
+    flash_notice('deleted')
     redirect_to entries_url
   end
 
   private
+  def get_entries
+    @entries = Entry.all
+  end
+
   def find_entry
     @entry = Entry.find(params[:id])
   end
 
+  def flash_notice(msg)
+    flash[:notice] = "#{@entry.full_name} #{msg}"
+  end
+
   def build_children
     @entry ||= Entry.new
-    @entry.addresses.build
-    urls do |accessor,type|
-      @entry.send(accessor).build
+    @entry.class.reflect_on_all_associations.find_all do |a|
+        a.collection?
+    end.collect(&:name).each do |attr|
+      @entry.send(attr).build
     end
   end
 end

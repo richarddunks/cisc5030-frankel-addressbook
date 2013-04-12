@@ -1,6 +1,8 @@
 p#notice = notice
 
 h1= @entry.full_name
+.title= @entry.title
+
 h2 Addresses
 - @entry.addresses.each do |address|
   = render 'addresses/show', address: address
@@ -13,9 +15,7 @@ h2 Addresses
         = render 'urls/show', url: url
 
 #buttons
-  = link_to 'Edit', edit_entry_path(@entry)
-  ' &nbsp;|&nbsp;
   = simple_form_for @entry, :method => :DELETE do |f|
     = f.button :submit, :value => 'Delete'
-  ' &nbsp;|&nbsp;
-  = link_to 'Back', entries_path
+  ' &nbsp;|
+  = link_to 'Edit', edit_entry_path(@entry)
