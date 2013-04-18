@@ -5,6 +5,15 @@ $bgcolor: lightgrey
 $highlight: darkorange
 $textcolor: black
 
+$total-columns: 24
+$detail-cols: 16
+$index-cols: $total-columns - $detail-cols
+
+.selected
+  color: $highlight
+  a
+    color: $highlight !important
+    font-weight: bold
 @mixin buttons
   &:hover
     color: $highlight
@@ -18,7 +27,8 @@ $textcolor: black
 a
   color: $textcolor
 
-body
+#content
+  //@include susy-grid-background
   color: $textcolor
   @include container
 
@@ -31,10 +41,29 @@ footer
   text-align: right
 
 nav
+  input[type="search"]
+    -webkit-appearance: searchfield
+  form
+    @include prefix(1, $index-cols)
+  ul
+    padding: 0
+    margin: 0
   .btn
     font-size: 1em
-  @include span-columns(3)
-  ul
+    @include span-columns($index-cols, $index-cols)
+  @include span-columns($index-cols)
+  ul#tab
+    @include span-columns(1, $index-cols)
+    li
+      text-align: center
+      border-bottom: 1px solid $bgcolor
+      border-right: 1px solid $bgcolor
+    a
+      color: darken($bgcolor, 30%)
+      text-decoration: none
+      font-size: .8em
+  ul#entries
+    @include span-columns($index-cols - 1 omega, $index-cols)
     padding-left: 0
     line-height: 1.25em
     height: 30em
@@ -43,7 +72,7 @@ nav
       text-decoration: none
 
 article
-  @include span-columns(9 omega)
+  @include span-columns($detail-cols omega)
   box-sizing: border-box
   border: 1px solid $bgcolor
   padding: 1em

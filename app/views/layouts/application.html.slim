@@ -5,13 +5,14 @@ html
     = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
   body
-    header
-      h1 My Site
-    nav
-      h2 Contacts
-      =render "entries/index"
-      .btn= link_to 'New Entry', new_entry_path
-    article
-      = yield
-    footer
-      | &nbsp;
+    #content
+      header
+        h1 My Site
+      nav
+        h2 Contacts
+        =render "entries/index"
+        .btn= link_to 'New Entry', new_entry_path
+      article
+        = yield
+      footer
+        | &nbsp;

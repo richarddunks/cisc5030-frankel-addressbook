@@ -48,11 +48,20 @@ class EntriesController < ApplicationController
 
   private
   def get_entries
-    @entries = Entry.all
+    criteria =
+      if params[:search]
+        param = "#{params[:search].downcase}%"
+        ["lower(last_name) like ? or lower(first_name) like ?", param, param]
+      else
+        ['substr(last_name,1,1) = ?', params[:initial]||'A']
+      end
+
+    @entries = Entry.where(criteria).order('last_name, first_name')
   end
 
   def find_entry
     @entry = Entry.find(params[:id])
+    params[:initial] = @entry.last_name[0]
   end
 
   def flash_notice(msg)

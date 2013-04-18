@@ -22,7 +22,7 @@ def random_type
 end
 
 Entry.delete_all
-100.times do
+5000.times do
   entry = Entry.new(
     first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,
     title: Faker::Name.title

@@ -1,1 +1,3 @@
-li= link_to entry.full_name, entry
+- selected = @entry && @entry.id == entry.id
+li class=(selected ? 'selected' : '')
+  = link_to entry.full_name, entry_path(entry, search: params[:search])
